@@ -1,0 +1,2 @@
+This file tests that git-ai metrics flow to the database correctly.
+Created: 2026-03-18
