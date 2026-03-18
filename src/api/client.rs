@@ -182,10 +182,23 @@ impl ApiContext {
 
     /// Create an API context for the mirror endpoint, if configured.
     /// Uses mirror_url and mirror_api_key from config.
-    /// Returns None if mirror_url is not set.
+    /// Returns None if mirror_url is not set or has an invalid URL scheme.
     pub fn mirror() -> Option<Self> {
         let cfg = config::Config::get();
         let mirror_url = cfg.mirror_url()?.to_string();
+
+        // Validate URL scheme (same rules as auth/client.rs validate_https_url)
+        #[cfg(not(debug_assertions))]
+        if !mirror_url.starts_with("https://") {
+            eprintln!("[mirror] Refusing to use non-HTTPS mirror URL: {}", mirror_url);
+            return None;
+        }
+        #[cfg(debug_assertions)]
+        if !mirror_url.starts_with("https://") && !mirror_url.starts_with("http://") {
+            eprintln!("[mirror] Invalid mirror URL scheme: {}", mirror_url);
+            return None;
+        }
+
         let mirror_api_key = cfg.mirror_api_key().map(|s| s.to_string());
         let author_identity = if mirror_api_key.is_some() {
             resolve_git_identity()
@@ -419,6 +432,22 @@ mod tests {
         let ctx = ApiContext::without_auth(Some("not-a-url".to_string()));
         let result = ctx.build_url("/api/test");
         assert!(result.is_err());
+    }
+
+    // ============= Mirror Tests =============
+
+    #[test]
+    fn test_mirror_returns_none_when_not_configured() {
+        // mirror_url is not set in the default test config
+        let result = ApiContext::mirror();
+        assert!(result.is_none());
+    }
+
+    #[test]
+    fn test_mirror_upload_returns_true_when_not_configured() {
+        // When mirror is not configured, mirror_upload should be a no-op returning true
+        let result = mirror_upload("test", |_client| Ok(()));
+        assert!(result);
     }
 
     // ============= Mutex Thread Safety Tests =============

@@ -8,7 +8,7 @@ use std::process::{Command, Stdio};
 pub fn now_unix() -> i64 {
     std::time::SystemTime::now()
         .duration_since(std::time::UNIX_EPOCH)
-        .unwrap_or_default()
+        .unwrap()
         .as_secs() as i64
 }
 
