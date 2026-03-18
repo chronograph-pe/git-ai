@@ -1,0 +1,23 @@
+test-mirror-verification.txt
+  04b579168b74afd7 1-2
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.16",
+  "base_commit_sha": "8451e2f7e16a7bff367a90ba25bc97c38e901e07",
+  "prompts": {
+    "04b579168b74afd7": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "d24d1c61-ba29-4494-9fce-88b783f16e16",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Michael Bridge <michael@chronograph.pe>",
+      "messages": [],
+      "total_additions": 2,
+      "total_deletions": 0,
+      "accepted_lines": 2,
+      "overriden_lines": 0
+    }
+  }
+}
