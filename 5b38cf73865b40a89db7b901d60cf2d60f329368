@@ -1,0 +1,38 @@
+src/commands/flush_metrics_db.rs
+  7368443e386ec493 5,114-116
+src/api/cas.rs
+  7368443e386ec493 1,7-12
+src/api/metrics.rs
+  7368443e386ec493 101-108
+src/api/mod.rs
+  7368443e386ec493 7,9
+src/config.rs
+  7368443e386ec493 83-85,154-157,398-407,644-665,690-691,716-717,1033-1034,1143-1144,1262-1263
+src/observability/flush.rs
+  7368443e386ec493 1,798-802
+src/commands/flush_cas.rs
+  7368443e386ec493 1,99,103
+src/api/client.rs
+  7368443e386ec493 183-203
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.1.12",
+  "base_commit_sha": "5b38cf73865b40a89db7b901d60cf2d60f329368",
+  "prompts": {
+    "7368443e386ec493": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "ff868431-50f8-4bb6-8e0c-05b5e34b1e0d",
+        "model": "claude-opus-4-6"
+      },
+      "human_author": "Michael Bridge <michael@chronograph.pe>",
+      "messages": [],
+      "total_additions": 0,
+      "total_deletions": 0,
+      "accepted_lines": 113,
+      "overriden_lines": 0,
+      "messages_url": "https://health.chronograph.systems/cas/4696007b70a5e8df385a40344085089ffb1269e1a64409d3e1449a749ed12036"
+    }
+  }
+}
